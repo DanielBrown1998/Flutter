@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:dart_application_1/aula_03.dart';
 
 void main(List<String> arguments) {
@@ -11,5 +10,5 @@ void main(List<String> arguments) {
   print(() {
     return 'Função anônima';
   });
-  seusDados('Fulano', 30, celular: '99-99999-9999');
+  seusDados('Fulano', idade: 30, celular: '99-99999-9999');
 }

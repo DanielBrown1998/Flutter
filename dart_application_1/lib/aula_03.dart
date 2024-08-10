@@ -1,4 +1,3 @@
-import 'dart:io';
 
 //funções nomeadas...
 dynamic fun_03() {

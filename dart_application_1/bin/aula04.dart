@@ -1,5 +1,3 @@
-import 'dart:io';
-
 void main(List<String> argumentos) {
   var nomes = <String>[
     'João',
