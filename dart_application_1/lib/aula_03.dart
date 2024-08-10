@@ -25,7 +25,7 @@ double sum(double x, double y) {
   return x + y;
 }
 
-void seusDados(String nome, int idade, {String celular = '99-99999-9999'}) {
+void seusDados(String nome, {int ?idade, String celular = '99-99999-9999'}) {
   //parâmetros nomeados
   print('parâemtro nomeado -> $celular');
 }
