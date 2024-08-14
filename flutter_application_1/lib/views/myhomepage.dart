@@ -6,15 +6,16 @@ class MyHomePage extends StatefulWidget {
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
+  // todo StatefulWidget possui o metodo createState do tipo State<StatefulWidget>
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+    setState( // é provido pela classe State
+      () {_counter++;} // função anônima
+      );
   }
 
   @override
