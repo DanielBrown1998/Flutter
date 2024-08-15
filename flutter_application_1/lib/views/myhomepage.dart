@@ -1,49 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/views/myapp.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class ContactList extends StatelessWidget{
+  const ContactList({super.key, required this.title});
   final String title;
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-  // todo StatefulWidget possui o metodo createState do tipo State<StatefulWidget>
+@override
+Widget build(BuildContext context){
+  return Scaffold(
+    appBar: AppBar(
+      title: Text(title),
+      actions: [
+        IconButton(
+          onPressed: (){
+            Navigator.pushNamed(context, MyApp.FORMS);            
+          },
+          icon: const Icon(Icons.add),
+        )
+      ],
+    ),
+    body: ListView(),
+  ); 
 }
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState( // é provido pela classe State
-      () {_counter++;} // função anônima
-      );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
 }
