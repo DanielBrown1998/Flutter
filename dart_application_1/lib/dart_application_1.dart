@@ -1,3 +1,5 @@
+import 'dart:io';
+
 int calculate() {
   return 6 * 7;
 }
@@ -61,5 +63,79 @@ class Funcionario extends Pessoa {
   set cargo(String value) => _cargo = value;
   String get cargo {
     return _cargo;
+  }
+}
+
+class Item {
+  String nome = '';
+  String descricao = '';
+  int peso = 0;
+  int valor = 0;
+  int quantidade = 0;
+  int durabilidade = 0;
+  int dano = 0;
+  int defesa = 0;
+  int magia = 0;
+  int velocidade = 0;
+  int nivel = 0;
+  int xp = 0;
+
+  Item(this.nome, this.peso);
+
+}
+
+class Habilidade {
+  String nome = '';
+  String descricao = '';
+  int nivel = 0;
+  int xp = 0;
+  int dano = 0;
+  int defesa = 0;
+  int magia = 0;
+  int velocidade = 0;
+}
+
+class Quest {
+  String nome = '';
+  String descricao = '';
+  int nivel = 0;
+  int xp = 0;
+  int dinheiro = 0;
+  int ouro = 0;
+  int prata = 0;
+  int cobre = 0;
+  List<Item> recompensas = [];
+}
+
+abstract class Personagem {
+  int posX;
+  int posY;
+  String nome;
+  int vida = 100;
+  int mana = 100;
+  int forca = 10;
+  int defesa = 10;
+  int magia = 10;
+  int velocidade = 10;
+  int nivel = 1;
+  int xp = 0;
+  int xpProxNivel = 100;
+  int dinheiro = 0;
+  int ouro = 0;
+  int prata = 0;
+  int cobre = 0;
+  List<Item> inventario = [];
+  List<Item> equipamentos = [];
+  List<Habilidade> habilidades = [];
+  List<Quest> quests = [];
+
+  Personagem({this.posX = 0, this.posY = 0, required this.nome});
+}
+
+class Jogador extends Personagem {
+  Jogador(int posX, int posY, String nome)
+      : super(posX: posX, posY: posY, nome: nome) {
+    final double vida = super.vida / 2;
+    print(vida);
   }
 }
