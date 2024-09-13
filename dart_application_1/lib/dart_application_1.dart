@@ -1,4 +1,3 @@
-import 'dart:io';
 
 int calculate() {
   return 6 * 7;

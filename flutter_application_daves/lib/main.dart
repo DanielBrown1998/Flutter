@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class MyApp extends StatefulWidget {
+  final String title;
+  const MyApp({super.key, required this.title});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class _HomeState extends State<Home> {
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    int num = 0;
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Hello World'),
+          title: const Text(
+            'Hello World',
+            style: TextStyle(color: Colors.black),
+          ),
           actions: [
             IconButton(
               icon: const Icon(Icons.search),
@@ -24,6 +29,7 @@ class _HomeState extends State<Home> {
             IconButton(
               icon: const Icon(Icons.more_vert),
               onPressed: () {
+                num++;
                 print('More button clicked');
               },
             ),
@@ -33,25 +39,16 @@ class _HomeState extends State<Home> {
                 print('Arrow button clicked');
               },
             )
-          ],
+        ],
         ),
-        body: const Center(
-          child: Text('Hello World'),
+        body: Center(
+            child: Text('Hello World $num'),
         ),
-      ),
+      )
     );
   }
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Home();
-  }
-}
-
 void main() {
-  runApp(const MyApp());
+  runApp(const MyApp(title: 'Welcome to My first app!!!'));
 }
