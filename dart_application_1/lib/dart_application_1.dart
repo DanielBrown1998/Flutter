@@ -1,4 +1,3 @@
-
 int calculate() {
   return 6 * 7;
 }
@@ -80,7 +79,6 @@ class Item {
   int xp = 0;
 
   Item(this.nome, this.peso);
-
 }
 
 class Habilidade {
@@ -137,4 +135,25 @@ class Jogador extends Personagem {
     final double vida = super.vida / 2;
     print(vida);
   }
+}
+
+void main() {
+  Pessoa pessoa = Pessoa(nome: 'João', idade: 20, altura: 1.80, peso: 80.0);
+  pessoa.profissao = 'Programador';
+  pessoa.salario = 2000.0;
+  print(pessoa.nome);
+  print(pessoa.profissao);
+  print(pessoa.salario);
+
+  Funcionario funcionario =
+      Funcionario(nome: 'Maria', idade: 30, altura: 1.70, peso: 60.0);
+  funcionario.cargo = 'Analista de Sistemas';
+  funcionario.salario = 3000.0;
+  print(funcionario.nome);
+  print(funcionario.cargo);
+  print(funcionario.salario);
+
+  print(funcionario.salario < pessoa.salario
+      ? '${pessoa.nome} tem o salário maior do que ${funcionario.nome}'
+      : '${funcionario.nome} tem o salário maior do que ${pessoa.nome}');
 }
