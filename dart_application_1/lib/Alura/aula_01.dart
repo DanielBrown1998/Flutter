@@ -27,10 +27,10 @@ void main() {
   print(meuNome.reversed);
   print(meuNome.elementAt(1));
   print(meuNome.contains('Daniel'));
-  meuNome.forEach((String element) {
+  for (var element in meuNome) {
     int tam = element.length;
     print(ehTriangulo(tam, tam + 1, tam - 1));
-  });
+  }
 }
 
 bool ehTriangulo(int a, int b, int c) {
