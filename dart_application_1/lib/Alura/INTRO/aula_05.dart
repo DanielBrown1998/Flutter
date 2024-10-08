@@ -10,7 +10,7 @@ void main() {
   String firstLastName = '';
   int i = 1;
   print(myName.sublist(0, 2)); //[Daniel, Passos]
-  myName.forEach((String element) {
+  for (dynamic element in myName) {
     if (element.contains('a')) {
       if (i == myName.length){
         firstLastName += element;
@@ -20,7 +20,7 @@ void main() {
       }
     }
     i++;
-  });
+  }
   print(firstLastName.trimRight()); //Daniel Passos
   print(firstLastName.split(' ')); //[Daniel, Passos]
 

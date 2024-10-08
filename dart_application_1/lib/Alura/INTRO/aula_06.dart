@@ -64,7 +64,7 @@ void main(){
 
   print('\n06.8) Map\n');
 
-  Map<String, String> estados = Map();
+  Map<String, String> estados = {};
   estados['SP'] = 'São Paulo';
   estados['RJ'] = 'Rio de Janeiro';
   estados['MG'] = 'Minas Gerais';

@@ -3,7 +3,6 @@
 //tipos de dados no Dart
 
 void main() {
-  double mega = 100e6;
   String name = 'Daniel';
   String sobrenome = 'Brown';
   String sobrenome1 = 'Rodrigues';
