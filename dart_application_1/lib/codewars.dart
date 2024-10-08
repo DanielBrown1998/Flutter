@@ -46,6 +46,74 @@ List<bool> flickSwitch(List<String> arguments) {
   return result;
 }
 
-List<int> maps(List<int> arr){
+List<int> maps(List<int> arr) {
   return arr.map((e) => e * 2).toList();
 }
+
+String highAndLow(String numbers) {
+  int max = -999999999999;
+  int min = 999999999999;
+
+  for (var item in numbers.split(' ')) {
+    int newItem = int.parse(item);
+    if (newItem >= max) {
+      max = newItem;
+    }
+    if (newItem <= min) {
+      min = newItem;
+    }
+  }
+  return '$max $min';
+}
+
+List<String> lista = [
+  "1 2 3 4 5",
+  "1 2 -3 4 5",
+  "1 9 3 4 -5",
+];
+
+List<String> highAndLowList(List<String> numbers) {
+  List<String> result = [];
+  for (var item in numbers) {
+    result.add(highAndLow(item));
+  }
+  return result;
+}
+
+int wordsToMarks(String s) {
+  Map<String, int> numsPos = {
+    'a': 1,
+    'b': 2,
+    'c': 3,
+    'd': 4,
+    'e': 5,
+    'f': 6,
+    'g': 7,
+    'h': 8,
+    'i': 9,
+    'j': 10,
+    'k': 11,
+    'l': 12,
+    'm': 13,
+    'n': 14,
+    'o': 15,
+    'p': 16,
+    'q': 17,
+    'r': 18,
+    's': 19,
+    't': 20,
+    'u': 21,
+    'v': 22,
+    'w': 23,
+    'x': 24,
+    'y': 25,
+    'z': 26,
+  };
+  int num = 0;
+  for (var item in s.split('')) {
+    num += numsPos[item]!;
+  }
+  return num;
+}
+
+void main() {}
