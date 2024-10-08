@@ -1,17 +1,3 @@
-void main() {
-  var banana = Banana('Banana', 'Amarela', 0.2, false);
-  var maca = Maca('Maçã', 'Vermelha', 0.3, false);
-
-  print(banana.caracteristicas());
-  print(maca.caracteristicas());
-
-  banana.amadurecer();
-  maca.amadurecer();
-
-  print(banana.caracteristicas());
-  print(maca.caracteristicas());
-}
-
 abstract class Fruta {
   String nome;
   double peso;
@@ -19,6 +5,10 @@ abstract class Fruta {
   bool isMadura;
   int dayLimitMin;
   int dayLimitMax;
+  late int? quantosDiasMaduras;
+  late int? quantosDiasAteApodrecer;
+  late int? quantosDiasPodre;
+  late int? quantosDiasAteAmadurecer;
   Fruta(
       {required this.nome,
       required this.cor,
@@ -27,18 +17,31 @@ abstract class Fruta {
       this.dayLimitMin = 10,
       this.dayLimitMax = 20});
 
-  void amadurecer(){
+  void amadurecer() {
     isMadura = true;
   }
 
   mostraMadura({required int days}) {
     if (days >= dayLimitMin && days <= dayLimitMax) {
       amadurecer();
-      print('A fruta $nome está madura');
+      quantosDiasAteAmadurecer = 0;
+      quantosDiasMaduras = days - dayLimitMin;
+      quantosDiasAteApodrecer = dayLimitMax - days;
+      quantosDiasPodre = 0;
+
+      print('A fruta $nome está a $quantosDiasMaduras dias madura,\nfaltam $quantosDiasAteApodrecer dias para apodrecer ');
     } else if (days < dayLimitMin) {
-      print('A fruta $nome ainda não está madura');
+      quantosDiasMaduras = 0;
+      quantosDiasPodre = 0;
+      quantosDiasAteAmadurecer = dayLimitMin - days;
+      quantosDiasAteApodrecer = dayLimitMax - days;
+      print('A fruta $nome ainda não está madura,\nfaltam $quantosDiasAteAmadurecer para amadurecer');
     } else {
-      print('A fruta $nome não está podre');
+      quantosDiasMaduras = 0;
+      quantosDiasAteApodrecer = 0;
+      quantosDiasAteAmadurecer = 0;
+      quantosDiasPodre = days - dayLimitMax;
+      print('A fruta $nome está podre a $quantosDiasPodre');
     }
   }
 
@@ -53,8 +56,6 @@ class Banana extends Fruta {
       required super.cor,
       required super.peso,
       required super.isMadura});
-
-  
 }
 
 class Maca extends Fruta {
@@ -63,5 +64,4 @@ class Maca extends Fruta {
       required super.cor,
       required super.peso,
       required super.isMadura});
-
 }
