@@ -116,4 +116,42 @@ int wordsToMarks(String s) {
   return num;
 }
 
-void main() {}
+String balancedNum(int numb) {
+  String nums = numb.toString();
+
+  if (nums.length <= 2) {
+    return 'Balanced';
+  }
+  int right = 0;
+  int left = 0;
+  int lim = nums.length ~/ 2;
+  if (nums.length % 2 == 0) {
+    String numsOdd = nums.substring(0, lim - 1);
+    String numsEven = nums.substring(lim + 1, nums.length);
+    for (var item in numsOdd.split('')) {
+      left += int.parse(item);
+    }
+    for (var item in numsEven.split('')) {
+      right += int.parse(item);
+    }
+  } else {
+    String numsOdd = nums.substring(0, lim);
+    String numsEven = nums.substring(lim+1, nums.length);
+    for (var item in numsOdd.split('')) {
+      left += int.parse(item);
+    }
+    for (var item in numsEven.split('')) {
+      right += int.parse(item);
+    }
+  }
+  if (right == left) {
+    return 'Balanced';
+  } else {
+    return 'Not Balanced';
+  }
+}
+
+void main() {
+  int num = 56239814;
+  print(balancedNum(num));
+}
