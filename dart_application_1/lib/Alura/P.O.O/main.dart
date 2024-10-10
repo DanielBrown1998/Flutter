@@ -1,21 +1,17 @@
 import 'classes.dart' as classes;
 
 void main() {
-  var banana = classes.Banana(
-    nome: 'Banana',
-    cor: 'Amarela',
-    peso: 0.2,
-  );
-  var maca = classes.Maca(
-    nome: 'Maçã',
-    cor: 'Vermelha',
-    peso: 0.3,
-  );
+  var cenoura = classes.Verdura(
+      nome: 'Cenoura', cor: 'Laranja', peso: 0.1, isPrecisaCozimento: false);
+  var batata = classes.Legume(
+      nome: 'Batata', cor: 'Marrom', peso: 0.2, isPrecisaCozimento: true);
+  var arroz = classes.Cereal(
+      nome: 'Arroz', cor: 'Branco', peso: 0.5, isPrecisaCozimento: true);
 
-  for (var item in banana.caracteristicas().entries) {
-    print('${item.key}: ${item.value}');
-  }
-
-  banana.mostraMadura(days: 15);
-  maca.mostraMadura(days: 15);
+  cenoura.propriedades();
+  cenoura.cozinhar();
+  batata.propriedades();
+  batata.cozinhar();
+  arroz.propriedades();
+  arroz.cozinhar();
 }

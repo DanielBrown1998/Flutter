@@ -17,7 +17,6 @@ abstract class Fruta {
       this.dayLimitMin = 10,
       this.dayLimitMax = 20});
 
-
   mostraMadura({required int days}) {
     if (days >= dayLimitMin && days <= dayLimitMax) {
       isMadura = true;
@@ -47,20 +46,80 @@ abstract class Fruta {
   }
 
   Map<String, dynamic> caracteristicas() {
-    return {'nome': nome, 'peso': peso, 'cor': cor, 'status': isMadura, 'limites': [dayLimitMin, dayLimitMax]};
+    return {
+      'nome': nome,
+      'peso': peso,
+      'cor': cor,
+      'status': isMadura,
+      'limites': [dayLimitMin, dayLimitMax]
+    };
   }
 }
 
 class Banana extends Fruta {
-  Banana(
-      {required super.nome,
-      required super.cor,
-      required super.peso});
+  Banana({required super.nome, required super.cor, required super.peso});
 }
 
 class Maca extends Fruta {
-  Maca(
+  Maca({required super.nome, required super.cor, required super.peso});
+}
+
+abstract class Alimento {
+  String nome;
+  double peso;
+  String cor;
+  bool isPrecisaCozimento;
+  Alimento(
+      {required this.nome,
+      required this.cor,
+      required this.peso,
+      required this.isPrecisaCozimento});
+
+  void propriedades() {}
+  void cozinhar() {
+    if (isPrecisaCozimento) {
+      print('Cozinhando $nome');
+    } else {
+      print('$nome não precisa ser cozido');
+    }
+  }
+}
+
+class Verdura extends Alimento {
+  Verdura(
       {required super.nome,
       required super.cor,
-      required super.peso});
+      required super.peso,
+      required super.isPrecisaCozimento});
+
+  @override
+  void propriedades() {
+    print('${super.nome} é uma verdura rica em vitaminas e minerais');
+  }
+}
+
+class Legume extends Alimento {
+  Legume(
+      {required super.nome,
+      required super.cor,
+      required super.peso,
+      required super.isPrecisaCozimento});
+
+  @override
+  void propriedades() {
+    print('${super.nome} é um legume rico em vitaminas e minerais');
+  }
+}
+
+class Cereal extends Alimento {
+  Cereal(
+      {required super.nome,
+      required super.cor,
+      required super.peso,
+      required super.isPrecisaCozimento});
+
+  @override
+  void propriedades() {
+    print('${super.nome} é um cereal rico em fibras e carboidratos');
+  }
 }
