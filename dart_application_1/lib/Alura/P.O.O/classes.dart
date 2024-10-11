@@ -1,21 +1,45 @@
-abstract class Fruta {
+abstract class Alimento {
   String nome;
   double peso;
   String cor;
-  bool isMadura;
-  int dayLimitMin;
-  int dayLimitMax;
+  bool isPrecisaCozimento;
+  Alimento(
+      {required this.nome,
+      required this.cor,
+      required this.peso,
+      required this.isPrecisaCozimento});
+
+  void propriedades() {}
+  void cozinhar() {
+    if (isPrecisaCozimento) {
+      print('Cozinhando $nome');
+    } else {
+      print('$nome não precisa ser cozido');
+    }
+  }
+}
+
+class Fruta extends Alimento {
   late int? quantosDiasMaduras;
   late int? quantosDiasAteApodrecer;
   late int? quantosDiasPodre;
   late int? quantosDiasAteAmadurecer;
+  bool? isMadura;
+  int dayLimitMin;
+  int dayLimitMax;
   Fruta(
-      {required this.nome,
-      required this.cor,
-      required this.peso,
+      {required super.nome,
+      required super.cor,
+      required super.peso,
+      super.isPrecisaCozimento = false,
       this.isMadura = false,
       this.dayLimitMin = 10,
       this.dayLimitMax = 20});
+    
+  @override
+  void propriedades() {
+    print('${super.nome} é uma fruta rica em vitaminas e minerais');
+  }
 
   mostraMadura({required int days}) {
     if (days >= dayLimitMin && days <= dayLimitMax) {
@@ -53,35 +77,6 @@ abstract class Fruta {
       'status': isMadura,
       'limites': [dayLimitMin, dayLimitMax]
     };
-  }
-}
-
-class Banana extends Fruta {
-  Banana({required super.nome, required super.cor, required super.peso});
-}
-
-class Maca extends Fruta {
-  Maca({required super.nome, required super.cor, required super.peso});
-}
-
-abstract class Alimento {
-  String nome;
-  double peso;
-  String cor;
-  bool isPrecisaCozimento;
-  Alimento(
-      {required this.nome,
-      required this.cor,
-      required this.peso,
-      required this.isPrecisaCozimento});
-
-  void propriedades() {}
-  void cozinhar() {
-    if (isPrecisaCozimento) {
-      print('Cozinhando $nome');
-    } else {
-      print('$nome não precisa ser cozido');
-    }
   }
 }
 
