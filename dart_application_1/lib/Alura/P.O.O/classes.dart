@@ -1,11 +1,17 @@
+abstract class Bolo {
+  String sabor;
+  bool isVegano;
+  Bolo({required this.sabor, required this.isVegano});
+
+  void assar();
+}
+
 abstract class Alimento {
   String nome;
   double peso;
-  String cor;
   bool isPrecisaCozimento;
   Alimento(
       {required this.nome,
-      required this.cor,
       required this.peso,
       required this.isPrecisaCozimento});
 
@@ -19,6 +25,35 @@ abstract class Alimento {
   }
 }
 
+class BoloChocolate extends Alimento implements Bolo {
+  @override
+  String sabor;
+  @override
+  bool isVegano;
+  BoloChocolate(
+      {required super.nome,
+      required super.peso,
+      super.isPrecisaCozimento = false,
+      this.sabor = 'doce',
+      this.isVegano = false});
+
+  @override
+  void propriedades() {
+    print('${super.nome} é um doce');
+  }
+
+  @override
+  void cozinhar() {
+    print('verificando se o alimento pode ser cozido!');
+    super.cozinhar();
+  }
+
+  @override
+  void assar() {
+    print('Assando bolo de $sabor');
+  }
+}
+
 class Fruta extends Alimento {
   late int? quantosDiasMaduras;
   late int? quantosDiasAteApodrecer;
@@ -29,13 +64,12 @@ class Fruta extends Alimento {
   int dayLimitMax;
   Fruta(
       {required super.nome,
-      required super.cor,
       required super.peso,
       super.isPrecisaCozimento = false,
       this.isMadura = false,
       this.dayLimitMin = 10,
       this.dayLimitMax = 20});
-    
+
   @override
   void propriedades() {
     print('${super.nome} é uma fruta rica em vitaminas e minerais');
@@ -73,7 +107,6 @@ class Fruta extends Alimento {
     return {
       'nome': nome,
       'peso': peso,
-      'cor': cor,
       'status': isMadura,
       'limites': [dayLimitMin, dayLimitMax]
     };
@@ -83,7 +116,6 @@ class Fruta extends Alimento {
 class Verdura extends Alimento {
   Verdura(
       {required super.nome,
-      required super.cor,
       required super.peso,
       required super.isPrecisaCozimento});
 
@@ -96,7 +128,6 @@ class Verdura extends Alimento {
 class Legume extends Alimento {
   Legume(
       {required super.nome,
-      required super.cor,
       required super.peso,
       required super.isPrecisaCozimento});
 
@@ -109,7 +140,6 @@ class Legume extends Alimento {
 class Cereal extends Alimento {
   Cereal(
       {required super.nome,
-      required super.cor,
       required super.peso,
       required super.isPrecisaCozimento});
 
