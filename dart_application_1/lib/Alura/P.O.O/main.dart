@@ -1,5 +1,3 @@
-import 'classes.dart' as classes;
-
 enum Transporte { carro, aviao, barco, bicicleta }
 
 Set<dynamic> gerandoSets(List<dynamic> lista) {
@@ -29,9 +27,39 @@ void escolherMeioTransporte(Transporte meioTransporte) {
   }
 }
 
+class Pessoa {
+  static String especie = "Humano";
+  String nome;
+  int idade;
+  bool isAuthenticated;
+  Pessoa(this.nome, this.idade, this.isAuthenticated);
+
+  Map<String, dynamic> toMap() {
+    return {'nome': nome, 'idade': idade, 'isAuthenticated': isAuthenticated};
+  }
+
+  String get minhaEspecie{
+    return especie;
+  }
+
+  set minhaEspecie(String value){
+    especie = value;
+  }
+
+}
+
 void main() {
-  escolherMeioTransporte(Transporte.carro);
-  List<dynamic> dados = ['Daniel', 26, '26510700', 2000.00, true, classes.BoloChocolate(nome: 'Casadinho', peso: 1, isPrecisaCozimento: false, isVegano: false, sabor: 'doce'), "Daniel", "Brown", "Brown"];
-  Set<dynamic> meuSet = gerandoSets(dados);
-  print(meuSet);
+  List<dynamic> lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  Set<dynamic> meuSet = gerandoSets(lista);
+  //print(meuSet);
+
+  Transporte transporte = Transporte.carro;
+  //escolherMeioTransporte(transporte);
+
+  Pessoa pessoa = Pessoa("Lucas", 22, true);
+  //print(pessoa.toMap());
+
+  print(Pessoa.especie);
+  pessoa.minhaEspecie = "Animal";
+  print(Pessoa.especie);
 }
