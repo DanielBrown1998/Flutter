@@ -10,20 +10,95 @@ Set<dynamic> gerandoSets(List<dynamic> lista) {
   return meuSet;
 }
 
-void escolherMeioTransporte(Transporte meioTransporte) {
-  switch (meioTransporte) {
-    case Transporte.carro:
-      print("Carro");
-      break;
-    case Transporte.aviao:
-      print("Avião");
-      break;
-    case Transporte.barco:
-      print("Barco");
-      break;
-    case Transporte.bicicleta:
-      print("Bicicleta");
-      break;
+class Viagem {
+  String origem;
+  String destino;
+  double distancia;
+  final Set<String> _lugaresVisitados = {};
+  late Transporte meioTransporte;
+  late double tempo;
+  int _totaisLugaresVisitados = 0;
+  Viagem(
+      {required this.origem, required this.destino, required this.distancia});
+
+  int get totaisLugaresVisitados{
+    return _totaisLugaresVisitados;
+  }
+
+  Set<String> get lugaresVisitados{
+    return _lugaresVisitados;
+  }
+
+  set lugaresVisitados(Set<String> lugares){
+    if (_lugaresVisitados.isEmpty){
+      _lugaresVisitados.addAll(lugares);
+      _totaisLugaresVisitados = _lugaresVisitados.length;
+    } else {
+      throw Exception("Lugares visitados já foram adicionados");
+    }
+  }
+
+  void addLugaresVisitados(String lugar){
+    if (_lugaresVisitados.contains(lugar)){
+      throw Exception("Lugar já visitado");
+    }
+    _lugaresVisitados.add(lugar);
+    _totaisLugaresVisitados++;
+  }
+
+  double velocidadeMedia() {
+    if (tempo.isNaN) {
+      throw Exception("escolha o meio de transporte primeiro");
+    }
+    double velocidadeMedia = distancia / tempo;
+    if (velocidadeMedia > 90 ||
+        velocidadeMedia < 20 && meioTransporte == Transporte.carro) {
+      throw Exception(
+          "Velocidade média não permitida para o meio de transporte escolhido");
+    } else if (velocidadeMedia > 950 ||
+        velocidadeMedia < 200 && meioTransporte == Transporte.aviao) {
+      throw Exception(
+          "Velocidade média não permitida para o meio de transporte escolhido");
+    } else if (velocidadeMedia > 30 ||
+        velocidadeMedia < 5 && meioTransporte == Transporte.bicicleta) {
+      throw Exception(
+          "Velocidade média não permitida para o meio de transporte escolhido");
+    } else if (velocidadeMedia > 50 ||
+        velocidadeMedia < 10 && meioTransporte == Transporte.barco) {
+      throw Exception(
+          "Velocidade média não permitida para o meio de transporte escolhido");
+    }
+
+    return distancia / tempo;
+  }
+
+  void informacoes() {
+    print("Origem: $origem");
+    print("Destino: $destino");
+    print("Distância: $distancia");
+    print("Tempo: $tempo");
+    print("Velocidade Média: ${velocidadeMedia()}");
+  }
+
+  void escolherMeioTransporte(String transporte) {
+    switch (transporte) {
+      case "Carro":
+        meioTransporte = Transporte.carro;
+        tempo = 1.5;
+        break;
+      case "Avião":
+        meioTransporte = Transporte.aviao;
+        tempo = 0.5;
+        break;
+      case "Barco":
+        meioTransporte = Transporte.barco;
+        tempo = 3.5;
+        break;
+      case "Bicicleta":
+        meioTransporte = Transporte.bicicleta;
+        tempo = 6.0;
+        break;
+    }
   }
 }
 
@@ -38,28 +113,17 @@ class Pessoa {
     return {'nome': nome, 'idade': idade, 'isAuthenticated': isAuthenticated};
   }
 
-  String get minhaEspecie{
+  String get minhaEspecie {
     return especie;
   }
 
-  set minhaEspecie(String value){
+  set minhaEspecie(String value) {
     especie = value;
   }
-
 }
 
 void main() {
   List<dynamic> lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   Set<dynamic> meuSet = gerandoSets(lista);
   //print(meuSet);
-
-  Transporte transporte = Transporte.carro;
-  //escolherMeioTransporte(transporte);
-
-  Pessoa pessoa = Pessoa("Lucas", 22, true);
-  //print(pessoa.toMap());
-
-  print(Pessoa.especie);
-  pessoa.minhaEspecie = "Animal";
-  print(Pessoa.especie);
 }
