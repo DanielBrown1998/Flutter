@@ -1,4 +1,5 @@
 import '../models/account.dart';
+import '../controllers/exceptions/exceptions.dart' as exceptions;
 
 class BankController {
   final Map<String, Account> _database = {};
@@ -9,17 +10,18 @@ class BankController {
   bool makeTransfer(
       {required String idSender, required idReceiver, required double amount}) {
     if (!verifyId(idSender)) {
-      return false;
+      throw exceptions.IdError( message: 'Invalid sender id');
     }
     if (!verifyId(idReceiver)) {
-      return false;
+      throw exceptions.IdError( message: 'Invalid receiver id');
     }
 
     Account? accountSender = _database[idSender];
     Account? accountReceiver = _database[idReceiver];
 
     if (accountSender!.balance < amount) {
-      return false;
+      throw exceptions.InsufficientBalanceError(
+          message: "Saldo insuficiente para realizar a transferência");
     }
     accountSender.balance -= amount;
     accountReceiver!.balance += amount;
