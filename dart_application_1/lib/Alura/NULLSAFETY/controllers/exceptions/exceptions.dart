@@ -1,17 +1,21 @@
-
-
-class IdError implements Exception{
+class IdError implements Exception {
+  static const String report = "IdError";
   final String message;
-  IdError({this.message = 'Unknow Id'}){
-    print('IdError: $message');
+  IdError({this.message = 'Unknow Id'});
+
+  @override
+  String toString() {
+    return "$report: $message";
   }
 }
 
-class InsufficientBalanceError implements Exception{
+class InsufficientBalanceError implements Exception {
+  static const String report = "InsufficientBalanceError";
   final String message;
-  InsufficientBalanceError({this.message = 'No founds'}){
-    print('InsufficientBalanceError: $message');
+  InsufficientBalanceError({this.message = 'No founds'});
+
+  @override
+  String toString() {
+    return "$report: $message";
   }
 }
-
-

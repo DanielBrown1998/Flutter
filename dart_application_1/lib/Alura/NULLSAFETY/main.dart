@@ -20,15 +20,16 @@ void main() {
 // Fazendo transferência
   try {
     bool result = bankController.makeTransfer(
-        idSender: "Kako", idReceiver: "Ricarth1", amount: 600);
+        idSender: "Kako", idReceiver: "Ricarth", amount: 600);
 // Observando resultado
-    print('Transferência finalizada');
-    print(result);
+    if (result){
+      print('Transferência finalizada');
+    }
 
   } on exceptions.IdError catch (e) {
-    print(e.message);
+    print(e.toString());
   } on exceptions.InsufficientBalanceError catch (e) {
-    print(e.message);
+    print(e.toString());
   } catch (e) {
     print('houve um erro inesperado!');
     print('tente novamente mais tarde...');
