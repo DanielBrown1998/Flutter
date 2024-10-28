@@ -5,7 +5,6 @@ import 'controllers/exceptions/exceptions.dart' as exceptions;
 void main() {
 //Criando o banco
   BankController bankController = BankController();
-
 // Adicionando contas
   bankController.addAccount(
       id: "Ricarth",
@@ -14,18 +13,16 @@ void main() {
 
   bankController.addAccount(
       id: "Kako",
-      account:
-          Account(name: "Caio Couto", balance: 600, isAuthenticated: true));
+      account: Account(name: "Kako", balance: 600, isAuthenticated: true));
 
 // Fazendo transferência
   try {
     bool result = bankController.makeTransfer(
         idSender: "Kako", idReceiver: "Ricarth", amount: 600);
 // Observando resultado
-    if (result){
+    if (result) {
       print('Transferência finalizada');
     }
-
   } on exceptions.IdError catch (e) {
     print(e.toString());
   } on exceptions.InsufficientBalanceError catch (e) {
