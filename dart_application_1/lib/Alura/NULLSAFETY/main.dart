@@ -3,6 +3,8 @@ import 'models/account.dart';
 import 'controllers/exceptions/exceptions.dart' as exceptions;
 
 void main() {
+
+
 //Criando o banco
   BankController bankController = BankController();
 // Adicionando contas
@@ -21,7 +23,7 @@ void main() {
         idSender: "Kako", idReceiver: "Ricarth", amount: 600);
 // Observando resultado
     if (result) {
-      print('Transferência finalizada');
+      //print('Transferência finalizada');
     }
   } on exceptions.IdError catch (e) {
     print(e.toString());
