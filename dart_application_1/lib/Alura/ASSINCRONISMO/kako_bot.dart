@@ -25,7 +25,7 @@ void main() async {
       TimeQuestions(usuario).timeQuestion();
     } else if (false) {
       // implementar o Timing!
-      
+      print("timing");
     } else {
       print(kakoBot +
           ' Não fui treinado para responder a essa pergunta \n Desculpe :( ');
