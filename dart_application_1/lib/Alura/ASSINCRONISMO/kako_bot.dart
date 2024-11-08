@@ -1,7 +1,7 @@
-
 import 'dart:io';
 
 import './questions/time_question.dart';
+import './timing/waiting_time.dart';
 
 void main() async {
   String kakoBot = 'KakoBOT:\n';
@@ -9,11 +9,14 @@ void main() async {
   String usuario = '';
 
   print('-- Iniciando o KakoBOT, aguarde..--');
-
+  await BotClock().clock(2);
   print('KakoBOT:\n Oi :) \n Como posso ajudar?');
   do {
     usuario = stdin.readLineSync().toString();
     print('-- Processando pergunta, aguarde..--');
+    await BotClock().clock(2).then(
+        (value) => print('KakoBOT:\n Pronto...')
+    );
     if (usuario.contains('xau') ||
         usuario.contains('Xau') ||
         usuario.contains('Adeus') ||
@@ -27,6 +30,7 @@ void main() async {
       // implementar o Timing!
       print("timing");
     } else {
+      await BotClock().clock(2);
       print(kakoBot +
           ' Não fui treinado para responder a essa pergunta \n Desculpe :( ');
       print(kakoBot + ' Você pode fazer outra pergunta ou dizer Adeus');
