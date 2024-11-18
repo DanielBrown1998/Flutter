@@ -14,19 +14,57 @@
 
 //A função assíncrona é executada em um isolado, 
 //que é uma unidade de execução independente que não compartilha memória com o isolado principal.
+
 //Exemplo de uso de Future e Stream
+// Função que retorna um Future de inteiros
+// async*
+// A função é assíncrona e retorna um Stream de inteiros
+// O operador * indica que a função é assíncrona e retorna um Stream
+
 import 'dart:async'; // Importa a biblioteca async
+Stream<int> myStream(int interval, [int? maxCount]) async* {
+  int count = 0;
+  while (maxCount == null || count < maxCount) {
+    await Future.delayed(Duration(seconds: interval));
+    yield count++;
+  }
+  print('Stream is finished');
+}
 
-void main() {
-  // Exemplo de uso de Future
-  Future.delayed(Duration(seconds: 2), () {
-    print('Future executado após 2 segundos');
-  });
 
-  // Exemplo de uso de Stream
-  Stream.periodic(Duration(seconds: 1), (int index) {
-    return index;
-  }).take(5).listen((int index) {
-    print('Stream executado a cada 1 segundo: $index');
+void main() async {
+  // Cria um Stream de inteiros
+  Stream<int> stream =  myStream(1, 5);
+  // Escuta os eventos do Stream
+  StreamSubscription subscription = stream.listen(
+    (int value) {
+    print(value);
+  }, onError:
+    (error) {
+    print('Error: $error');
+  }, onDone:
+    () {
+    print('Done');
   });
+  // Aguarda a conclusão do Stream
+  await Future.delayed(Duration(seconds: 3), () {
+    subscription.pause();
+    print(
+      'Stream is paused'
+    );
+  });
+  await Future.delayed(Duration(seconds: 3), () {
+    subscription.resume();
+    print(
+      'Stream is resumed'
+    );
+  });
+  await Future.delayed(Duration(seconds: 3), () {
+    subscription.cancel();
+    print(
+      'Stream is canceled'
+    );  
+  });
+  
+  print('Main is finished');
 }
