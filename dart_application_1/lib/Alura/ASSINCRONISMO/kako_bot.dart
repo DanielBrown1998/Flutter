@@ -8,6 +8,12 @@ void main() async {
   var a = true;
   String usuario = '';
 
+  var myStream = BotClock().botStream(1, 10);
+  var subscriber  = myStream.listen((event) {
+    print('                            KakoBot is activated for $event seconds');
+  });
+
+
   print('-- Iniciando o KakoBOT, aguarde..--');
   await BotClock().clock(2);
   print('KakoBOT:\n Oi :) \n Como posso ajudar?');
